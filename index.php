@@ -1,6 +1,7 @@
 <?php
 include 'connect.php';
 include 'submit_data.php';
+include 'get_match_data.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,16 +17,26 @@ include 'submit_data.php';
 <body>
     <?php include 'navbar.php';?>
     <div class="row">
-        <div class="large-3 columns">
+        <div class="large-6 columns">
             <h1>Home</h1>
         </div>
-        <div class="large-3 columns">
-            <h2>Match <?php echo isset($match_num) ? $match_num : "1"; ?></h2>
+        <div class="large-6 columns" align="center">
+            <h2><?php echo isset($match_name) ? $match_name : ""?></h2>
         </div>
     </div>
 
     <form method="post">
-        <input type="hidden" name="match_num" value=<?php echo isset($match_num) ? $match_num : "1";?>>
+        <div class="row">
+            <div class="large-2 columns" align="right">
+                <h4>Match: </h4>
+            </div>
+            <div class="large-8 columns">
+                <input type="number" name="match_num" value="<?php echo isset($match_num) ? $match_num : "1";?>">
+            </div>
+            <div class="large-2 columns">
+                <input type="submit" name="submit" class="warning expanded button" value="Update">
+            </div>
+        </div>
         <div class="row">
             <div class="large-6 columns">
             <!-- Team 1 -->
@@ -54,7 +65,7 @@ include 'submit_data.php';
                                 </div>
                             </div>
                             <div class="large-4 columns">
-                                <div class="switch">
+                                <div class="switch small">
                                   <input class="switch-input" id="auto_star_range1" type="checkbox" name="auto_star_range1">
                                   <label class="switch-paddle" for="auto_star_range1">
                                     <span class="show-for-sr">Lift</span>
@@ -80,7 +91,7 @@ include 'submit_data.php';
                                 </div>
                             </div>
                             <div class="large-4 columns">
-                                <div class="switch">
+                                <div class="switch small">
                                   <input class="switch-input" id="auto_cube_range1" type="checkbox" name="auto_cube_range1">
                                   <label class="switch-paddle" for="auto_cube_range1">
                                     <span class="show-for-sr">Lift</span>
@@ -137,7 +148,7 @@ include 'submit_data.php';
                                     </div>
                                 </div>
                                 <div class="large-4 columns">
-                                    <div class="switch">
+                                    <div class="switch small">
                                       <input class="switch-input" id="auto_star_range2" type="checkbox" name="auto_star_range2">
                                       <label class="switch-paddle" for="auto_star_range2">
                                         <span class="show-for-sr">Lift</span>
@@ -163,7 +174,7 @@ include 'submit_data.php';
                                     </div>
                                 </div>
                                 <div class="large-4 columns">
-                                    <div class="switch">
+                                    <div class="switch small">
                                       <input class="switch-input" id="auto_cube_range2" type="checkbox" name="auto_cube_range2">
                                       <label class="switch-paddle" for="auto_cube_range2">
                                         <span class="show-for-sr">Lift</span>
@@ -233,7 +244,7 @@ include 'submit_data.php';
                                 </div>
                             </div>
                             <div class="large-4 columns">
-                                <div class="switch">
+                                <div class="switch small">
                                   <input class="switch-input" id="drive_star_range1" type="checkbox" name="drive_star_range1">
                                   <label class="switch-paddle" for="drive_star_range1">
                                     <span class="show-for-sr">Lift</span>
@@ -259,7 +270,7 @@ include 'submit_data.php';
                                 </div>
                             </div>
                             <div class="large-4 columns">
-                                <div class="switch">
+                                <div class="switch small">
                                   <input class="switch-input" id="drive_cube_range1" type="checkbox" name="drive_cube_range1">
                                   <label class="switch-paddle" for="drive_cube_range1">
                                     <span class="show-for-sr">Lift</span>
@@ -316,7 +327,7 @@ include 'submit_data.php';
                                     </div>
                                 </div>
                                 <div class="large-4 columns">
-                                    <div class="switch">
+                                    <div class="switch small">
                                       <input class="switch-input" id="drive_star_range2" type="checkbox" name="drive_star_range2">
                                       <label class="switch-paddle" for="drive_star_range2">
                                         <span class="show-for-sr">Lift</span>
@@ -342,7 +353,7 @@ include 'submit_data.php';
                                     </div>
                                 </div>
                                 <div class="large-4 columns">
-                                    <div class="switch">
+                                    <div class="switch small">
                                       <input class="switch-input" id="drive_cube_range2" type="checkbox" name="drive_cube_range2">
                                       <label class="switch-paddle" for="drive_cube_range2">
                                         <span class="show-for-sr">Lift</span>
@@ -386,7 +397,7 @@ include 'submit_data.php';
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <input type="submit" name="submit" class="success expanded button">
+                <input type="submit" name="submit" class="success expanded button" value="Submit">
             </div>
         </div>
 

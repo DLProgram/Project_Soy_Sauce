@@ -34,7 +34,16 @@ function process_input($array){
     return $result;
 }
 if(isset($_POST["submit"])){
-    $result = process_input($_POST);
-    echo var_dump($result);
+    if($_POST['submit'] == "Submit"){
+        $result = process_input($_POST);
+        $match_num = $result['match_num'];
+        $match_num = $match_num + 1;
+    }elseif($_POST['submit'] == "Update"){
+        $match_num = $_POST['match_num'];
+    }
+}
+
+if (!isset($match_num)){
+    $match_num = 1;
 }
 ?>
