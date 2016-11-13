@@ -42,6 +42,7 @@ include 'get_match_data.php';
             <!-- Team 1 -->
             <div class="large-6 columns">
                 <div class="row" align="center">
+                    <input type="hidden" name="team1" value=<?php echo isset($team1) ? $team1 : "Team 1" ?>>
                     <h2><?php echo isset($team1) ? $team1 : "Team 1" ?></h2>
                 </div>
                 <!-- Auto -->
@@ -118,13 +119,13 @@ include 'get_match_data.php';
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
             <!-- Team 2 -->
             <dir class="large-6 columns">
                     <div class="row" align="center">
+                        <input type="hidden" name="team2" value=<?php echo isset($team2) ? $team2 : "Team 2" ?>>
                         <h2><?php echo isset($team2) ? $team2 : "Team 2" ?></h2>
                     </div>
                     <!-- Auto -->

@@ -15,6 +15,10 @@
           <a href='upload_match_data.php'>Upload Data</a>
           </li>
           ";
+          echo "<li>
+          <a href='check_data.php'>Check Data</a>
+          </li>
+          ";
         }
         ?>
       </ul>

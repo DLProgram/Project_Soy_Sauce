@@ -9,8 +9,8 @@ function get_team($conn, $color, $match_num){
         $team1 = $match_data['red1'];
         $team2 = $match_data['red2'];
     }else{
-        $team1 = $match_data['blue1'];
-        $team2 = $match_data['blue2'];
+        $team1 = "Team 1";
+        $team2 = "Team 2";
     }
     $match_name = $match_data['match_name'];
     return array('team1' => $team1, 'team2' => $team2, 'match_name' => $match_name);
