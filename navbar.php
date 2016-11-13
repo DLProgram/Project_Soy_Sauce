@@ -9,12 +9,20 @@
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">SS 2016</li>
         <li><a href="index.php">Home</a></li>
+        <?php
+        if ($_SESSION['color'] == 'admin'){
+          echo "<li>
+          <a href='upload_match_data.php'>Upload Data</a>
+          </li>
+          ";
+        }
+        ?>
       </ul>
     </div>
     <div class="top-bar-right">
       <ul class="menu">
-        <li>Username</li>
-        <li><a href="#">Log Out</a></li>
+        <li><?php echo isset($_SESSION['login_user']) ? $_SESSION['login_user'] : "Username" ?></li>
+        <li><a href="logout.php">Log Out</a></li>
       </ul>
     </div>
   </div>

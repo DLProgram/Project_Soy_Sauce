@@ -1,4 +1,5 @@
 <?php
+include 'lock.php';
 include 'connect.php';
 include 'submit_data.php';
 include 'get_match_data.php';
@@ -27,7 +28,7 @@ include 'get_match_data.php';
 
     <form method="post">
         <div class="row">
-            <div class="large-2 columns" align="right">
+            <div class="large-2 columns" align="left">
                 <h4>Match: </h4>
             </div>
             <div class="large-8 columns">
@@ -38,19 +39,19 @@ include 'get_match_data.php';
             </div>
         </div>
         <div class="row">
-            <div class="large-6 columns">
             <!-- Team 1 -->
+            <div class="large-6 columns">
                 <div class="row" align="center">
                     <h2><?php echo isset($team1) ? $team1 : "Team 1" ?></h2>
                 </div>
-                <div class="row">
                 <!-- Auto -->
+                <div class="row">
                     <div class="large-3">
                         <h4>Auto</h4>
                     </div>
                     <div class="large-9">
-                        <div class="row">
                         <!-- Star -->
+                        <div class="row">
                             <div class="large-3 columns">
                                 <h6>Star</h6>
                             </div>
@@ -75,8 +76,8 @@ include 'get_match_data.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
                         <!-- Cube -->
+                        <div class="row">
                             <div class="large-3 columns">
                                 <h6>Cube</h6>
                             </div>
@@ -101,8 +102,8 @@ include 'get_match_data.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
                         <!-- Lift -->
+                        <div class="row">
                             <div class="large-3 columns">
                                 <h6>Lift</h6>
                             </div>
@@ -126,14 +127,14 @@ include 'get_match_data.php';
                     <div class="row" align="center">
                         <h2><?php echo isset($team2) ? $team2 : "Team 2" ?></h2>
                     </div>
-                    <div class="row">
                     <!-- Auto -->
+                    <div class="row">
                         <div class="large-3">
                             <h4>Auto</h4>
                         </div>
                         <div class="large-9">
-                            <div class="row">
                             <!-- Star -->
+                            <div class="row">
                                 <div class="large-3 columns">
                                     <h6>Star</h6>
                                 </div>
@@ -158,8 +159,8 @@ include 'get_match_data.php';
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
                             <!-- Cube -->
+                            <div class="row">
                                 <div class="large-3 columns">
                                     <h6>Cube</h6>
                                 </div>
@@ -205,7 +206,7 @@ include 'get_match_data.php';
                     </div>
                 </div>
             </dir>
-            <!-- Slider -->
+            <!-- Auto Slider -->
             <div class="row">
                 <div class="large-12 columns" style="margin-bottom: 50px; margin-top: 20px;">
                     <div class="slider" data-slider data-end="100" data-step="10" data-initial-start="50">
@@ -216,20 +217,20 @@ include 'get_match_data.php';
                 </div>
             </div>
         </div>
+        <!-- Team 1 -->
         <div class="row">
             <div class="large-6 columns">
-            <!-- Team 1 -->
                 <div class="row show-for-small-only" align="center">
                     <h2><?php echo isset($team1) ? $team1 : "Team 1" ?></h2>
                 </div>
+                <!-- Drive -->
                 <div class="row">
-                <!-- Auto -->
                     <div class="large-3">
                         <h4>Drive</h4>
                     </div>
+                    <!-- Star -->
                     <div class="large-9">
                         <div class="row">
-                        <!-- Star -->
                             <div class="large-3 columns">
                                 <h6>Star</h6>
                             </div>
@@ -254,8 +255,8 @@ include 'get_match_data.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
                         <!-- Cube -->
+                        <div class="row">
                             <div class="large-3 columns">
                                 <h6>Cube</h6>
                             </div>
@@ -280,8 +281,8 @@ include 'get_match_data.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
                         <!-- Lift -->
+                        <div class="row">
                             <div class="large-3 columns">
                                 <h6>Lift</h6>
                             </div>
@@ -305,14 +306,14 @@ include 'get_match_data.php';
                     <div class="row show-for-small-only" align="center">
                         <h2><?php echo isset($team2) ? $team2 : "Team 2" ?></h2>
                     </div>
-                    <div class="row">
                     <!-- Drive -->
+                    <div class="row">
                         <div class="large-3">
                             <h4>Drive</h4>
                         </div>
                         <div class="large-9">
-                            <div class="row">
                             <!-- Star -->
+                            <div class="row">
                                 <div class="large-3 columns">
                                     <h6>Star</h6>
                                 </div>
@@ -337,8 +338,8 @@ include 'get_match_data.php';
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
                             <!-- Cube -->
+                            <div class="row">
                                 <div class="large-3 columns">
                                     <h6>Cube</h6>
                                 </div>
@@ -363,8 +364,8 @@ include 'get_match_data.php';
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
                             <!-- Lift -->
+                            <div class="row">
                                 <div class="large-3 columns">
                                     <h6>Lift</h6>
                                 </div>
@@ -384,7 +385,7 @@ include 'get_match_data.php';
                     </div>
                 </div>
             </dir>
-            <!-- Slider -->
+            <!-- Drive Slider -->
             <div class="row" style="margin-bottom: 50px; margin-top: 20px;">
                 <div class="large-12 columns">
                     <div class="slider" data-slider data-end="100" data-step="10" data-initial-start="50">

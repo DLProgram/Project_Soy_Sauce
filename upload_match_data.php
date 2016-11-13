@@ -1,10 +1,11 @@
 <?php
+include 'lock.php';
 include("connect.php");
 if(!empty($_FILES)){
     $myfile = fopen($_FILES['fileUpload']['tmp_name'], "r");
     $all_rows = array();
     $header = null;
-    $result = [];
+    $log = [];
     while ($row = fgetcsv($myfile)) {
         if ($header === null) {
             $header = $row;
@@ -17,7 +18,7 @@ if(!empty($_FILES)){
     $num_of_row = $conn->query("SELECT COUNT(*) FROM match_data")->fetch_assoc()['COUNT(*)'];
     if ($num_of_row > 0){
         if ($conn->query("TRUNCATE TABLE match_data")){
-            array_push($result, "Deleted Old Data");
+            array_push($log, "Deleted Old Data");
         }else{
             die(mysqli_error($conn));
         }
@@ -36,7 +37,7 @@ if(!empty($_FILES)){
             
 
             if ($conn->query("INSERT INTO match_data (match_num, match_name, blue1, blue2, red1, red2) VALUES ({$match_num}, '{$match_name}', '{$blue1}', '{$blue2}', '{$red1}', '{$red2}')")){
-                array_push($result, "Added Data {$match_name}");
+                array_push($log, "Added Data {$match_name}");
             }else{
                 die(mysqli_error($conn));
             }
@@ -77,8 +78,8 @@ if(!empty($_FILES)){
     <div class="row">
         <table class="hover">
         <?php
-            if(isset($result)){
-                foreach ($result as $row) {
+            if(isset($log)){
+                foreach ($log as $row) {
                     echo "<tr><td>";
                     echo $row;
                     echo "</td></tr>";
