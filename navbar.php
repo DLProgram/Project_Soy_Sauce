@@ -9,6 +9,8 @@
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">SS 2016</li>
         <li><a href="index.php">Home</a></li>
+        <li><a href="team_stats.php">Team Statistics</a></li>
+        
         <?php
         if ($_SESSION['color'] == 'admin'){
           echo "<li>
