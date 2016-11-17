@@ -1,6 +1,7 @@
 <?php
 include 'lock.php';
-include("connect.php");
+include 'admin_permission.php';
+
 if(!empty($_FILES)){
     $myfile = fopen($_FILES['fileUpload']['tmp_name'], "r");
     $all_rows = array();

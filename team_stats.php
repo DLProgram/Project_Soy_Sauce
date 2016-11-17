@@ -1,6 +1,5 @@
 <?php
 include 'lock.php';
-include 'connect.php';
 
 function get_teams($conn){
     $teams = $conn->query("SELECT DISTINCT(team_name) FROM checked_result")->fetch_all();

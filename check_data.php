@@ -1,6 +1,6 @@
 <?php
 include 'lock.php';
-include 'connect.php';
+include 'admin_permission.php';
 
 function get_unchecked_data($conn){
     $submitted_matches = $conn->query("SELECT * FROM submitted_result")->fetch_all(MYSQLI_ASSOC);

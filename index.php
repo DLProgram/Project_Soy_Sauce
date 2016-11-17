@@ -1,6 +1,5 @@
 <?php
 include 'lock.php';
-include 'connect.php';
 include 'submit_data.php';
 include 'get_match_data.php';
 ?>

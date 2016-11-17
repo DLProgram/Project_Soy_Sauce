@@ -1,6 +1,6 @@
 <?php
 include 'lock.php';
-include 'connect.php';
+include 'admin_permission.php';
 
 function get_events(){
     $ch = curl_init();  

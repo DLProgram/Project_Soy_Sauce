@@ -1,6 +1,5 @@
 <?php
 include 'lock.php';
-include 'connect.php';
 if (isset($_GET['team'])){
     $entries = $conn->query("SELECT * FROM checked_result WHERE team_name='{$_GET['team']}'")->fetch_all(MYSQLI_ASSOC);
 }
