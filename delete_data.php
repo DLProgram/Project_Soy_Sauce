@@ -3,15 +3,15 @@ include 'lock.php';
 include 'admin_permission.php';
 
 function empty_all_tables($conn){
-    // if (!$conn->query("TRUNCATE TABLE submitted_result")){
-    //     die(mysqli_error($conn));
-    // }
-    // if (!$conn->query("TRUNCATE TABLE checked_result")){
-    //     die(mysqli_error($conn));
-    // }
-    // if (!$conn->query("TRUNCATE TABLE match_data")){
-    //     die(mysqli_error($conn));
-    // }
+    if (!$conn->query("TRUNCATE TABLE submitted_result")){
+        die(mysqli_error($conn));
+    }
+    if (!$conn->query("TRUNCATE TABLE checked_result")){
+        die(mysqli_error($conn));
+    }
+    if (!$conn->query("TRUNCATE TABLE match_data")){
+        die(mysqli_error($conn));
+    }
 }
 
 if (isset($_GET['delete'])) {
