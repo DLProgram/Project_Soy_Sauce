@@ -14,13 +14,20 @@
         <?php
         if ($_SESSION['color'] == 'admin'){
           echo "<li>
-          <a href='upload_match_data.php'>Upload Data</a>
-          </li>
-          ";
-          echo "<li>
           <a href='check_data.php'>Check Data</a>
           </li>
           ";
+          echo "<li>
+            <a href='#'>Match Data</a>
+            <ul class='menu'>
+              <li>
+                <a href='upload_match_data.php'>Upload Data From Computer</a>
+              </li>
+              <li>
+                <a href='get_match_data_from_webpage.php'>Import Data From VEX Via</a>
+              </li>
+            </ul>
+          </li>";
         }
         ?>
       </ul>
