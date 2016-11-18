@@ -6,6 +6,8 @@
    * [WAMP for Windows users](www.wampserver.com)
    * [MAMP for Mac users](www.mamp.info)
 2. Zurb Foundation Web Framework
+3. jQuery
+4. Peity jQuery plugin
 
 ###MySQL User
 Login credentials are stored in **connect.php**.

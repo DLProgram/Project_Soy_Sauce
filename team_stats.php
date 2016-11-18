@@ -32,6 +32,8 @@ function get_team_stats($conn, $team_name){
     $stats['sum_of_auto'] = 0;
     $stats['sum_of_drive'] = 0;
 
+    $stats['auto'] = "";
+    $stats['drive'] = "";
     foreach ($entries as $entrie) {
         $stats['num_of_ase'] += $entrie['auto_star_enable'];
         $stats['num_of_asr'] += $entrie['auto_star_range'];
@@ -48,7 +50,14 @@ function get_team_stats($conn, $team_name){
 
         $stats['sum_of_auto'] += $entrie['auto'];
         $stats['sum_of_drive'] += $entrie['drive'];
+
+        $stats['auto'] = $stats['auto'] . $entrie['auto'] . ',';
+        $stats['drive'] = $stats['drive'] . $entrie['drive'] . ',';
     }
+    $stats['auto'] = rtrim($stats['auto'], ",");
+    $stats['drive'] = rtrim($stats['drive'], ",");
+
+    // var_dump($stats);
 
     $stats['avg_of_ase'] = $stats['num_of_ase']/$stats['num_of_entries'] * 100;
     $stats['avg_of_asr'] = $stats['num_of_asr']/$stats['num_of_entries'] * 100;
@@ -138,21 +147,21 @@ if (!isset($_GET['sort_by'])) {
                     <tr>
                     <td>{$counter}</td>
                     <td><a href='team_detail.php?team={$team_stats['team_name']}'>{$team_stats['team_name']}</a></td>
-                    <td>{$team_stats['avg_of_auto']}</td>
-                    <td>{$team_stats['avg_of_drive']}</td>
+                    <td><center>{$team_stats['avg_of_auto']}</center><span class='line'>{$team_stats['auto']}</span></td>
+                    <td><center>{$team_stats['avg_of_drive']}</center><span class='line'>{$team_stats['drive']}</span></td>
 
-                    <td>{$team_stats['num_of_ase']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_ase']}%)</strong></td>
-                    <td>{$team_stats['num_of_asr']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_asr']}%)</strong></td>
-                    <td>{$team_stats['num_of_ace']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_ace']}%)</strong></td>
-                    <td>{$team_stats['num_of_acr']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_acr']}%)</strong></td>
+                    <td>{$team_stats['num_of_ase']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_ase']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_asr']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_asr']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_ace']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_ace']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_acr']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_acr']}/{$team_stats['num_of_entries']}</span></td>
 
-                    <td>{$team_stats['num_of_dse']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dse']}%)</strong></td>
-                    <td>{$team_stats['num_of_dsr']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dsr']}%)</strong></td>
-                    <td>{$team_stats['num_of_dce']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dce']}%)</strong></td>
-                    <td>{$team_stats['num_of_dcr']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dcr']}%)</strong></td>
+                    <td>{$team_stats['num_of_dse']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_dse']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_dsr']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_dsr']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_dce']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_dce']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_dcr']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_dcr']}/{$team_stats['num_of_entries']}</span></td>
 
-                    <td>{$team_stats['num_of_al']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_al']}%)</strong></td>
-                    <td>{$team_stats['num_of_dl']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dl']}%)</strong></td>
+                    <td>{$team_stats['num_of_al']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_al']}/{$team_stats['num_of_entries']}</span></td>
+                    <td>{$team_stats['num_of_dl']}/{$team_stats['num_of_entries']}<span class='donut' >{$team_stats['num_of_dl']}/{$team_stats['num_of_entries']}</span></td>
                     </tr>
                     ";
                     $counter++;
@@ -165,5 +174,27 @@ if (!isset($_GET['sort_by'])) {
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/jquery.peity.min.js"></script>
+    <script type="text/javascript">
+        $.fn.peity.defaults.donut = {
+          delimiter: null,
+          fill: ["green", "red"],
+          height: null,
+          radius: 7,
+          width: null
+        }
+        $.fn.peity.defaults.line = {
+          delimiter: ",",
+          fill: "#c6d9fd",
+          height: 16,
+          max: null,
+          min: 0,
+          stroke: "#4d89f9",
+          strokeWidth: 1,
+          width: 60
+        }
+        $(".line").peity("line")
+        $(".donut").peity("donut")
+    </script>
 </body>
 </html>
