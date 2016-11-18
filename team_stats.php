@@ -11,6 +11,8 @@ function get_teams($conn){
 }
 
 function get_team_stats($conn, $team_name){
+
+    $stats['team_name'] = $team_name;
     $entries = $conn->query("SELECT * FROM checked_result WHERE team_name='{$team_name}'")->fetch_all(MYSQLI_ASSOC);
     $stats['num_of_entries'] = count($entries);
 
@@ -66,7 +68,26 @@ function get_team_stats($conn, $team_name){
     return $stats;
 }
 
+function sort_by($name, $all_team_stats){
+    $sort_key = [];
+    foreach ($all_team_stats as $key => $value) {
+        $sort_key[$key] = $value[$name];
+    }
+    array_multisort($sort_key, SORT_DESC, $all_team_stats);
+    return $all_team_stats;
+}
 
+$all_team_stats = [];
+foreach (get_teams($conn) as $team) {
+    $all_team_stats[] = get_team_stats($conn, $team);
+}
+
+
+if (!isset($_GET['sort_by'])) {
+    $all_team_stats = sort_by('avg_of_drive', $all_team_stats);
+}else{
+    $all_team_stats = sort_by($_GET['sort_by'], $all_team_stats);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,30 +110,34 @@ function get_team_stats($conn, $team_name){
     <div class="row">
         <div class="table-scroll">
             <table class="hover">
-                <tr>
-                    <th>Team</th>
-                    <th>Auto</th>
-                    <th>Drive</th>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><a href="?sort_by=team_name">Team</a></th>
+                        <th><a href="?sort_by=avg_of_auto">Auto</a></th>
+                        <th><a href="?sort_by=avg_of_drive">Drive</a></th>
 
-                    <th>Auto star enable</th>
-                    <th>Auto star range</th>
-                    <th>Auto cube enable</th>
-                    <th>Auto cube range</th>
+                        <th>Auto star enable</th>
+                        <th>Auto star range</th>
+                        <th>Auto cube enable</th>
+                        <th>Auto cube range</th>
 
-                    <th>Drive star enable</th>
-                    <th>Drive star range</th>
-                    <th>Drive cube enable</th>
-                    <th>Drive cube range</th>
+                        <th>Drive star enable</th>
+                        <th>Drive star range</th>
+                        <th>Drive cube enable</th>
+                        <th>Drive cube range</th>
 
-                    <th>Auto lift</th>
-                    <th>Drive lift</th>
-                </tr>
+                        <th>Auto lift</th>
+                        <th>Drive lift</th>
+                    </tr>
+                </thead>
                 <?php
-                foreach (get_teams($conn) as $team) {
-                    $team_stats = get_team_stats($conn, $team);
+                $counter = 1;
+                foreach ($all_team_stats as $team_stats) {
                     echo"
                     <tr>
-                    <td><a href='team_detail.php?team={$team}'>{$team}</a></td>
+                    <td>{$counter}</td>
+                    <td><a href='team_detail.php?team={$team_stats['team_name']}'>{$team_stats['team_name']}</a></td>
                     <td>{$team_stats['avg_of_auto']}</td>
                     <td>{$team_stats['avg_of_drive']}</td>
 
@@ -130,6 +155,7 @@ function get_team_stats($conn, $team_name){
                     <td>{$team_stats['num_of_dl']}/{$team_stats['num_of_entries']}<strong>({$team_stats['avg_of_dl']}%)</strong></td>
                     </tr>
                     ";
+                    $counter++;
                 }
                 ?>
             </table>
