@@ -34,7 +34,16 @@ include 'get_match_data.php';
                 <input type="number" name="match_num" value="<?php echo isset($match_num) ? $match_num : "1";?>">
             </div>
             <div class="large-2 columns">
-                <input type="submit" name="submit" class="warning expanded button" value="Update">
+                <?php
+                    if ($_SESSION['color'] == 'red'){
+                        echo"<input type='submit' name='submit' class='alert expanded button' value='Update'>";
+                    }elseif($_SESSION['color'] == 'blue'){
+                        echo"<input type='submit' name='submit' class='info expanded button' value='Update'>";
+                    }else{
+                        echo"<input type='submit' name='submit' class='warning expanded button' value='Update'>";
+                    }
+                ?>
+                
             </div>
         </div>
         <div class="row">
